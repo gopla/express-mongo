@@ -1,5 +1,6 @@
 const Anggota = require("./anggotaModel");
 const hash = require("../../lib/bcryptPassword");
+const signJWT = require("../../lib/signJWT");
 
 module.exports = {
   index(req, res) {
@@ -47,6 +48,26 @@ module.exports = {
           data: row
         })
       )
+      .catch(err => res.json(err));
+  },
+  auth(req, res) {
+    const { username, password } = req.body;
+    Anggota.findOne({ username })
+      .then(row => {
+        _anggota = row;
+        return hash.checkPassword(password, row.password);
+      })
+      .then(isMatch => {
+        if (isMatch) {
+          return signJWT.signJWT(_anggota);
+        } else {
+          res.json({
+            isSuccess: false,
+            error: "Password did not match"
+          });
+        }
+      })
+      .then(token => res.json({ isSuccess: true, token: token }))
       .catch(err => res.json(err));
   }
 };
