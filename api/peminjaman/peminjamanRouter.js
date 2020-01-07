@@ -11,6 +11,6 @@ router.delete("/:id", con.delete);
 router.get("/anggota/:id_anggota", con.anggotaPinjam);
 router.get("/anggota/:id_anggota/:id", con.anggotaPinjamFindOne);
 
-router.put("/ubahStatus", con.ubahStatusPinjam);
+router.put("/kembali/:id", con.ubahStatusPinjam);
 
 module.exports = router;

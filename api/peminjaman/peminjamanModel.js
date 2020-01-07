@@ -12,11 +12,13 @@ const peminjamanSchema = new mongoose.Schema(
     },
     tgl_pinjam: {
       type: Date,
-      required: true
+      required: true,
+      default: Date.now()
     },
     kembali: {
       type: Date,
-      required: true
+      required: true,
+      default: () => Date.now() + 7 * 24 * 60 * 60 * 1000
     },
     tgl_kembali: {
       type: Date,

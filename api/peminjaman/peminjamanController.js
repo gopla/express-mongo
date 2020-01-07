@@ -48,7 +48,7 @@ module.exports = {
   },
   ubahStatusPinjam(req, res) {
     Peminjaman.findOneAndUpdate(
-      { _id: req.body.id },
+      { _id: req.params.id },
       { isAktif: false },
       { new: true }
     )
