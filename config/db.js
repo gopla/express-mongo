@@ -1,8 +1,11 @@
 const mongoose = require("mongoose");
 mongoose
-  .connect("mongodb://127.0.0.1:27017/perpustakaan", {
-    useNewUrlParser: true
-  })
+  .connect(
+    "mongodb+srv://gopla:zaq123@cluster0-nj4a3.gcp.mongodb.net/perpustakaan",
+    {
+      useNewUrlParser: true
+    }
+  )
   .then(() => {
     console.log("-> Database Connected");
   })
